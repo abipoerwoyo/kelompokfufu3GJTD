@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Absen - FUFU TEAM</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #3c3c3c;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding-top: 20px;
+        }
+
+        .sidebar img {
+            width: 120px;
+            margin: 0 auto 20px;
+        }
+
+        .sidebar a {
+            padding: 15px 20px;
+            color: white;
+            text-decoration: none;
+            display: block;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background-color: #2a2a2a;
+        }
+
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background-color: #d3d3d3;
+            padding: 15px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            border-bottom: 1px solid #999;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .content h2 {
+            margin-bottom: 20px;
+        }
+
+        video {
+            width: 400px;
+            height: 300px;
+            background: #ccc;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 8px 15px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <img src="logo.png" alt="Logo">
+        <a href="/">Home</a>
+        <a href="/absen" class="active">Absen</a>
+        <a href="/rekap">Rekap Absensi</a>
+    </div>
+
+    <div class="main">
+        <div class="header">FUFU TEAM</div>
+        <div class="content">
+            <h2>Absen</h2>
+
+            {% if error %}
+                <p style="color:red">{{ error }}</p>
+            {% endif %}
+
+            <video id="video" autoplay></video><br>
+            <button onclick="takeSnapshot()">Ambil Foto & Absen</button>
+
+            <form id="formAbsen" method="POST" action="/absen">
+                <input type="hidden" name="image_data" id="imageData">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const video = document.getElementById('video');
+
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => video.srcObject = stream)
+            .catch(err => console.error("Gagal mengakses kamera:", err));
+
+        function takeSnapshot() {
+            const canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            canvas.getContext('2d').drawImage(video, 0, 0);
+
+            const imageData = canvas.toDataURL('image/jpeg');
+            document.getElementById('imageData').value = imageData;
+            document.getElementById('formAbsen').submit();
+        }
+    </script>
+
+</body>
+</html>

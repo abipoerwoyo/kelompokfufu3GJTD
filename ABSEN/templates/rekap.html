@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Rekap Absensi</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            margin: 0;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #3c3c3c;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding-top: 20px;
+        }
+        .sidebar img {
+            width: 120px;
+            margin: 0 auto 20px;
+        }
+        .sidebar a {
+            padding: 15px 20px;
+            color: white;
+            text-decoration: none;
+        }
+        .sidebar a:hover, .sidebar a.active {
+            background-color: #2a2a2a;
+        }
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #d3d3d3;
+            padding: 15px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .content {
+            padding: 30px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 800px;
+        }
+        th, td {
+            padding: 10px 15px;
+            border: 1px solid #000;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <img src="logo.png" alt="Logo">
+    <a href="/">Home</a>
+    <a href="/absen">Absen</a>
+    <a href="/rekap" class="active">Rekap Absensi</a>
+</div>
+
+<div class="main">
+    <div class="header">FUFU TEAM</div>
+    <div class="content">
+        <h2>Data Absensi Kelas 3G D4 JTD</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>NIM</th>
+                    <th>Waktu</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in data %}
+                <tr>
+                    <td>{{ item.no }}</td>
+                    <td>{{ item.nama }}</td>
+                    <td>{{ item.nim }}</td>
+                    <td>{{ item.waktu }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
