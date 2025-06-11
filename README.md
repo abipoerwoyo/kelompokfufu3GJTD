@@ -11,4 +11,5 @@
 # roi0208 absen:17
 # Riskaaf19 absen:19
 # ![image](https://github.com/user-attachments/assets/04ef3407-83e9-480e-be5d-7f830718e10c)
+![image](https://github.com/user-attachments/assets/cfe59c70-7679-44d6-809f-fb280032244e)
 
