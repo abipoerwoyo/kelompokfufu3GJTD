@@ -82,7 +82,7 @@
 <body>
 
     <div class="sidebar">
-        <img src="logo.png" alt="Logo">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo">
         <a href="/">Home</a>
         <a href="/absen" class="active">Absen</a>
         <a href="/rekap">Rekap Absensi</a>
